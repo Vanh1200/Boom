@@ -27,6 +27,7 @@ public class Bomber {
     private int sizeOfBomb;
     private int numberOfBomb;
     private int countSpeed = 1000000;
+    //
 
     public Bomber(int x, int y, int speed){
         this.x = x;

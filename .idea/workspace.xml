@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97751310-9d27-4f29-9d98-df389f52f816" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/Boom/highscores/highscore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Boom/highscores/highscore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +26,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="highscore.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="highscore.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/highscores/highscore.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bomber.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -60,8 +69,8 @@
         <option value="$PROJECT_DIR$/src/com/vanh1200/GUI/HighScorePanel.java" />
         <option value="$PROJECT_DIR$/src/com/vanh1200/models/GameManager.java" />
         <option value="$PROJECT_DIR$/src/com/vanh1200/models/HighScore.java" />
-        <option value="$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java" />
         <option value="$PROJECT_DIR$/src/highscores/highscore.txt" />
+        <option value="$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java" />
       </list>
     </option>
   </component>
@@ -121,6 +130,12 @@
               <item name="Boom" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="highscores" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Boom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Boom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="maps" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -236,11 +251,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2537112" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2537112" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -609,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/vanh1200/GUI/BoomPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3230">
@@ -647,6 +655,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/vanh1200/models/Bomber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
         </state>
       </provider>
     </entry>
