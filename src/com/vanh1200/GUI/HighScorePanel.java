@@ -23,7 +23,7 @@ public class HighScorePanel extends JPanel implements MouseListener {
 
     private void addComp() {
         int x = GUIManager.W_FRAME / 2 - 182 / 2;
-        int y = 500;
+        int y = 520;
         lb_back = setLabel(x, y, "/Images/button_back.png");
         lb_back.addMouseListener(this);
         add(lb_back);
@@ -57,7 +57,7 @@ public class HighScorePanel extends JPanel implements MouseListener {
             g2d.drawString(Integer.toString(i + 1), x , y);
             g2d.drawString(highScores.get(i).getName(), x + 100, y);
             g2d.drawString(Integer.toString(highScores.get(i).getScore()), x + 400, y);
-            y += 60;
+            y += 50;
         }
     }
 

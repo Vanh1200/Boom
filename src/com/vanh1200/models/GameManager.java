@@ -29,13 +29,15 @@ public class GameManager {
     public static final int WIN = 1;
     public static final int RUNNING = 3;
     private int gameStatus;
+    private int index_arr_animation = 0;
+    private int count_arr_animation = 0;
     private int round = 1;
     public void initGame() {
         initHighScore("src/highscores/highscore.txt");
         gameStatus = RUNNING;
         switch(round){
             case 1:
-                initPlayer(315, 540, 7); // speed from 1 -> 10
+                initPlayer(315, 540, 6); // speed from 6 -> 9
                 initItem("src/maps/Map1/ITEM.txt");
                 initBomb();
                 initBombBang();
@@ -55,9 +57,9 @@ public class GameManager {
                 break;
             case 3:
                 GameManager.x = 315;
-                GameManager.y = 270;
-                bomber.setNewLife(315, 270);
-                //initPlayer(315, 270, 7); // speed from 1 -> 10
+                GameManager.y = 495;
+                bomber.setNewLife(315, 495);
+                //initPlayer(315, 495, 7); // speed from 1 -> 10
                 initItem("src/maps/Map3/ITEM.txt");
                 initBomb();
                 initBombBang();
@@ -72,9 +74,29 @@ public class GameManager {
         g2d.drawImage(image, 0, 0, null);
     }
 
+    private void drawAnimation(Graphics2D g2d){
+        if(bomber.getSpeed() == Bomber.MAX_SPEED && bomber.getStatus() == Bomber.ALIVE){
+            count_arr_animation++;
+            if(count_arr_animation >= 50){
+                count_arr_animation = 0;
+                index_arr_animation++;
+            }
+            if(index_arr_animation > 2)
+                index_arr_animation = 0;
+            Image[] images = new Image[3];
+            images[0] = new ImageIcon(getClass().getResource("/Images/smoke_cloud_04.PNG")).getImage();
+            images[1] = new ImageIcon(getClass().getResource("/Images/smoke_cloud_03.PNG")).getImage();
+            images[2] = new ImageIcon(getClass().getResource("/Images/smoke_cloud_02.PNG")).getImage();
+            g2d.drawImage(images[index_arr_animation], bomber.getX() + 8, bomber.getY() + 20, 30, 30, null);
+        }
+    }
+
     private void drawInfo(Graphics2D g2d){
+        Image imageTick = new ImageIcon(getClass().getResource("/Images/tick.png")).getImage();
         Image imageInfo = new ImageIcon(getClass().getResource("/Images/background_Info.png")).getImage();
         g2d.drawImage(imageInfo, 678 ,0, 280, 610, null);
+
+        // Draw heart
         Image imageHeart = new ImageIcon(getClass().getResource("/Images/heart_1.png")).getImage();
         int xHeart, yHeart;
         xHeart = 700;
@@ -83,10 +105,55 @@ public class GameManager {
             g2d.drawImage(imageHeart, xHeart, yHeart, null);
             xHeart += 36;
         }
+
+        // Draw shoes
+        Image imageShose = new ImageIcon(getClass().getResource("/Images/item_shoe.png")).getImage();
+        int xShose = 700;
+        int yShose = 360;
+        int temp = 1;
+        if(bomber.getSpeed() == 7)
+            temp = 2;
+        else if(bomber.getSpeed() == 8)
+            temp = 3;
+        else if(bomber.getSpeed() == 9){
+            temp = 4;
+            g2d.drawImage(imageTick, 850, 360, 30, 30, null);
+        }
+        for(int i = 0; i < temp; i++){
+            g2d.drawImage(imageShose, xShose, yShose, 24, 24, null);
+            xShose += 36;
+        }
+
+        //Draw Bomb
+        Image imageBoom = new ImageIcon(getClass().getResource("/Images/bomb.png")).getImage();
+        int xSizeBoom = 700;
+        int ySizeBoom = 280;
+        if(bomber.getNumberOfBomb() == 4)
+            g2d.drawImage(imageTick, 850, 280, 30, 30, null);
+        for(int i = 0; i < bomber.getNumberOfBomb(); i++){
+            g2d.drawImage(imageBoom, xSizeBoom, ySizeBoom, 24, 24, null);
+            xSizeBoom += 36;
+        }
+
+
+        //Draw Power
+        Image imagePower1 = new ImageIcon(getClass().getResource("/Images/bombbang_right_1.png")).getImage();
+        Image imagePower2 = new ImageIcon(getClass().getResource("/Images/bombbang_right_2.png")).getImage();
+        if(bomber.getSizeOfBomb() == 1){
+            g2d.drawImage(imagePower1, 700, 440, 75, 33, null);
+        }else if(bomber.getSizeOfBomb() >= 2){
+            g2d.drawImage(imagePower1, 700, 440, 108, 33, null);
+            g2d.drawImage(imageTick, 850, 440, 30, 30,null);
+        }
+
+        //Draw String
         g2d.setColor(Color.PINK);
         g2d.setFont(new Font("Arial", Font.PLAIN, 25));
         g2d.drawString("Your Heart: ", 720, 170);
         g2d.drawString("Your Score: ", 720, 90);
+        g2d.drawString("Number: ", 720, 250);
+        g2d.drawString("Speed: ", 720, 330);
+        g2d.drawString("Power:", 720, 410);
         g2d.drawString(String.valueOf(bomber.getScore()), 760, 120);
     }
 
@@ -123,7 +190,13 @@ public class GameManager {
                     if(code == 1){
                         int xEnemy = i * 45;
                         int yEnemy = row * 45;
-                        Enemy enemy = new Enemy(xEnemy, yEnemy, 3, 2);
+                        Enemy enemy = new Enemy(xEnemy, yEnemy, 3, 1,2);
+                        enemies.add(enemy);
+                    }
+                    else if(code == 2){
+                        int xEnemy = i * 45;
+                        int yEnemy = row * 45;
+                        Enemy enemy = new Enemy(xEnemy, yEnemy, 3, 2,2);
                         enemies.add(enemy);
                     }
                 }
@@ -251,6 +324,7 @@ public class GameManager {
         }
         drawText(g2d);
         drawInfo(g2d);
+        drawAnimation(g2d);
     }
 
 
@@ -266,9 +340,6 @@ public class GameManager {
             if(enemies.get(i).move(boxes, bombs) == false)
                 enemies.get(i).generateOrient2();
         }
-//        for(int i = 0; i < enemies.size(); i++){
-//            enemies.get(i).autoMove(boxes, bombs);
-//        }
         changeAllEnemyMove();
     }
 
@@ -336,12 +407,25 @@ public class GameManager {
     public synchronized void checkBombBangImpactVsEnemy(){
         for(int i = 0; i < enemies.size(); i++){
             for(int j = 0; j < bombBangs.size(); j++){
-                if(bombBangs.get(j).isImpactVsEnemy(enemies.get(i))){
-                    enemies.remove(i);
-                    GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
-                    if(bomber.getStatus() == Bomber.ALIVE)
-                        bomber.setScore(bomber.getScore() + 10);
-                    return;
+                if(bombBangs.get(j).isImpactVsEnemy(enemies.get(i))) {
+                    if (enemies.get(i).getType() == Enemy.MONSTER) {
+                        enemies.remove(i);
+                        GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
+                        if (bomber.getStatus() == Bomber.ALIVE)
+                            bomber.setScore(bomber.getScore() + 10);
+                        return;
+                    }
+                    if (enemies.get(i).getType() == Enemy.BOSS){
+                        if(bombBangs.get(j).getTimeStart() + 50 == System.currentTimeMillis())
+                            enemies.get(i).setHealthBoss(enemies.get(i).getHealthBoss() - 2);
+                        if(enemies.get(i).getHealthBoss() == 0){
+                            enemies.remove(i);
+                            if (bomber.getStatus() == Bomber.ALIVE)
+                                bomber.setScore(bomber.getScore() + 30);
+                        }
+                        GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
+                    }
+
                 }
             }
         }
@@ -479,7 +563,7 @@ public class GameManager {
             GameSound.getIstance().getAudio(GameSound.WIN).play();
             return;
         }
-        if(enemies.size() == 0 && round == 3 && gameStatus != GameManager.NEXT_ROUND){
+        if(enemies.size() == 0 && round == 3 && gameStatus == GameManager.RUNNING){
             gameStatus = GameManager.WIN;
             GameSound.getIstance().stop();
             GameSound.getIstance().getAudio(GameSound.WIN).play();
@@ -489,11 +573,13 @@ public class GameManager {
     }
 
     public void saveHighScore(){
-            int max = 0;
+            int min = 0;
             if(highScores.size() > 0)
-                max = highScores.get(0).getScore();
-            if (bomber.getScore() > max || highScores.size() < 10 && bomber.getScore() != 0){
+                min = highScores.get(highScores.size() - 1).getScore();
+            if (bomber.getScore() > min || highScores.size() < 10 && bomber.getScore() != 0){
                 String name = JOptionPane.showInputDialog("Input your name: ");
+                if(name.equals(null) || name.equals(""))
+                    name = "anonymous";
                 highScores.add(new HighScore(name, bomber.getScore()));
                 Collections.sort(highScores);
             }

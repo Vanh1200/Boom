@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel implements MouseListener{
         lbPlay.addMouseListener(this);
         y += 70;
 
-        lbOption = setLabel(x, y, "/Images/button_option.png");
+        lbOption = setLabel(x, y, "/Images/button_help.png");
         add(lbOption);
         lbOption.addMouseListener(this);
         y += 70;
@@ -73,7 +73,7 @@ public class MenuPanel extends JPanel implements MouseListener{
             guiManager.showNewGame();
         }
         else if(e.getSource().equals(lbOption)){
-
+            guiManager.showOption();
         }
         else if(e.getSource().equals(lbHighScore)){
             guiManager.showHighScore();
@@ -94,7 +94,7 @@ public class MenuPanel extends JPanel implements MouseListener{
             lbPlay.setIcon(new ImageIcon(getClass().getResource("/Images/button_play (1).png")));
         }
         else if(e.getSource().equals(lbOption)){
-            lbOption.setIcon(new ImageIcon(getClass().getResource("/Images/button_option (1).png")));
+            lbOption.setIcon(new ImageIcon(getClass().getResource("/Images/button_help (1).png")));
         }
         else if(e.getSource().equals(lbHighScore)){
             lbHighScore.setIcon(new ImageIcon(getClass().getResource("/Images/button_high-score (1).png")));
@@ -110,7 +110,7 @@ public class MenuPanel extends JPanel implements MouseListener{
             lbPlay.setIcon(new ImageIcon(getClass().getResource("/Images/button_play.png")));
         }
         else if(e.getSource().equals(lbOption)){
-            lbOption.setIcon(new ImageIcon(getClass().getResource("/Images/button_option.png")));
+            lbOption.setIcon(new ImageIcon(getClass().getResource("/Images/button_help.png")));
         }
         else if(e.getSource().equals(lbHighScore)){
             lbHighScore.setIcon(new ImageIcon(getClass().getResource("/Images/button_high-score.png")));

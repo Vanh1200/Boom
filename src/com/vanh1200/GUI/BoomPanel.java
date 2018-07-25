@@ -114,7 +114,9 @@ public class BoomPanel extends JPanel implements KeyListener, Runnable, MouseLis
             gameManager.checkDead();
             gameManager.checkRound();
 
-            if(gameManager.getBomber().getStatus() == Bomber.DEAD && gameManager.getGameStatus() != GameManager.LOSE){
+            if(gameManager.getBomber().getStatus() == Bomber.DEAD
+                    && gameManager.getGameStatus() != GameManager.LOSE
+                    && gameManager.getGameStatus() != GameManager.WIN){
                 timeDead++;
                 if(timeDead == 1500){
                     timeDead = 0;
@@ -141,6 +143,7 @@ public class BoomPanel extends JPanel implements KeyListener, Runnable, MouseLis
                     GameSound.getIstance().getAudio(GameSound.PLAYGAME).loop();
                     IS_PAUSE = true;
                     guiManager.showMenu();
+                    BoomPanel.HIT_PAUSE = false;
                 }
             }
 

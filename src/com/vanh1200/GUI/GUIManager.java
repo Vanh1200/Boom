@@ -64,6 +64,7 @@ public class GUIManager extends JPanel{
     }
 
     public void showHighScore(){
+        highScorePanel.initHighScore("src/highScores/highscore.txt");
         cardLayout.show(this, HIGHSCORE_TAG);
         highScorePanel.requestFocus();;
     }

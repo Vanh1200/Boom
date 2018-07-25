@@ -16,6 +16,7 @@ public class Bomber {
     public static final int DOWN = 3;
     public final static int ALIVE = 1;
     public final static int DEAD = 0;
+    public static final int MAX_SPEED = 9;
     private int x;
     private int y;
     private int status;
@@ -27,7 +28,6 @@ public class Bomber {
     private int sizeOfBomb;
     private int numberOfBomb;
     private int countSpeed = 1000000;
-    //
 
     public Bomber(int x, int y, int speed){
         this.x = x;
@@ -39,7 +39,7 @@ public class Bomber {
         status = Bomber.ALIVE;
         numberOfBomb = 1;
         sizeOfBomb = 1;
-        heart = 2;
+        heart = 5;
         images[0] = new ImageIcon(getClass()
                 .getResource("/Images/bomber_left.png"))
                 .getImage();

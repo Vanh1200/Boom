@@ -1,4 +1,10 @@
+Viet Anh:250
+Ngao da:250
+vanh:230
 vanh1200:50
 haha:20
 kaka:20
+vanhvanh:20
+kaka123:20
 vanh1200:10
+vaaa:10
